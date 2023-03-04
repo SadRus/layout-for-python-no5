@@ -1,14 +1,10 @@
 import json
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from pprint import pprint
+from livereload import Server
 
 
-def serialize_book_json(json_file):
-    json_file = json_file.replace('/shots', 'images').replace('/images', 'images')
-    return json.loads(json_file)
-
-def main():
+def on_reload():
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html'])
@@ -17,12 +13,15 @@ def main():
 
     with open('books_content.json', 'r') as file:
         books_json = file.read()
+    books_json  = books_json.replace('/shots', 'images').replace('/images', 'images')
+    books = json.loads(books_json)
 
-    books = serialize_book_json(books_json)
     rendered_page = template.render(books=books)
     with open('index.html', 'w', encoding='utf8') as file:
         file.write(rendered_page)
 
 
 if __name__ == '__main__':
-    main()
+    server = Server()
+    server.watch('template.html', on_reload)
+    server.serve(root='.')
