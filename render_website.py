@@ -15,17 +15,19 @@ def on_reload():
 
     with open('books_content.json', 'r') as file:
         books_json = file.read()
-    books_json  = books_json.replace('/images', '../images').replace('/shots', '../images')
+    books_json  = books_json.replace('/images', 'images').replace('/shots', 'images')
     books = json.loads(books_json)
 
     os.makedirs('./pages', exist_ok=True)
-    books_per_page = list(chunked(books, 20))
-
+    books_per_page = list(chunked(books, 15))
+    pages_total = len(books_per_page)
+    
     for num, books in enumerate(books_per_page, start=1):
         chunked_books = list(chunked(books, 2))
         rendered_page = template.render(
             chunked_books=chunked_books,
-            page_num=num,
+            current_page_num=num,
+            pages_total=pages_total,
             )
         with open(f'pages/index{num}.html', 'w', encoding='utf8') as file:
             file.write(rendered_page)
