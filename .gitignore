@@ -3,7 +3,7 @@ images/
 comments/
 test.py
 books.json
-
+pages/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
