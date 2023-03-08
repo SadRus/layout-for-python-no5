@@ -1,7 +1,8 @@
 # Онлайн-библиотека
-сайт опубликован по адресу:  
+Верстаем онлайн-библиотеку. Выкладываем книги на сайт. Публикуем на github pages.  
+Сайт опубликован по адресу:  
 https://sadrus.github.io/layout-for-python-no5/pages/index1.html
-Верстаем онлайн-библиотеку. Выкладываем книги на сайт. Публикуем на github pages.
+
 
 ## Установка
 
@@ -14,7 +15,7 @@ https://sadrus.github.io/layout-for-python-no5/pages/index1.html
 ## Запуск
 
 Запустите скрипт в консоли, используя python (или python3):  
-`python render_website.py`
+- `python render_website.py`
 
 ## Использование
 
