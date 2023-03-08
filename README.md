@@ -3,6 +3,10 @@
 Сайт опубликован по адресу:  
 https://sadrus.github.io/layout-for-python-no5/pages/index1.html
 
+Данные книги взяты с сайта https://tululu.org/l55/ с первых трех страниц.  
+
+Если вы хотите использовать другие книги можете воспользоваться скриптом из репозитория:  
+https://github.com/SadRus/layout-for-python-no4
 
 ## Установка
 
@@ -16,6 +20,9 @@ https://sadrus.github.io/layout-for-python-no5/pages/index1.html
 
 Запустите скрипт в консоли, используя python (или python3):  
 - `python render_website.py`
+
+При успешном запуске вы увидите следующие сообщения в консоли:
+![image](https://user-images.githubusercontent.com/79669407/223827350-163d2bac-d8b5-4a8c-a3f4-be763c552217.png)
 
 ## Использование
 
