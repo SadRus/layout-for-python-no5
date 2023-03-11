@@ -4,18 +4,23 @@ import os
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 from more_itertools import chunked
+from dotenv import load_dotenv
 
 
 def on_reload():
-    book_cards_per_page = 15
-
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html'])
     )
     template = env.get_template('template.html')
 
-    with open('books_content.json', 'r') as file:
+    load_dotenv()
+    book_cards_per_page = int(os.getenv('BOOK_CARDS_PER_PAGE', default=10))
+    file_path = os.getenv('FILEPATH', default='./')
+    file_name = os.getenv('FILENAME', default='books_content.json')
+    full_path = os.path.join(file_path, file_name)
+
+    with open(full_path, 'r') as file:
         books_content = json.load(file)
 
     for book_content in books_content:
@@ -29,7 +34,6 @@ def on_reload():
                 '../media/images',
                 book_content['img_src']
             )
-
     os.makedirs('./pages', exist_ok=True)
     book_cards_by_page = list(chunked(books_content, book_cards_per_page))
     pages_total = len(book_cards_by_page)
