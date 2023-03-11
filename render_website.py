@@ -7,6 +7,8 @@ from more_itertools import chunked
 
 
 def on_reload():
+    book_cards_per_page = 15
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html'])
@@ -14,22 +16,31 @@ def on_reload():
     template = env.get_template('template.html')
 
     with open('books_content.json', 'r') as file:
-        books_json = file.read()
-    books_json  = books_json.replace('/images', 'images').replace('/shots', 'images')
-    books = json.loads(books_json)
+        books_content = json.load(file)
+
+    for book_content in books_content:
+        if book_content['img_src'] == 'nopic.gif':
+            book_content['img_src'] = os.path.join(
+                '../static',
+                book_content['img_src']
+            )
+        else:
+            book_content['img_src'] = os.path.join(
+                '../media/images',
+                book_content['img_src']
+            )
 
     os.makedirs('./pages', exist_ok=True)
-    books_per_page = list(chunked(books, 15))
-    pages_total = len(books_per_page)
-    
-    for num, books in enumerate(books_per_page, start=1):
-        chunked_books = list(chunked(books, 2))
+    book_cards_by_page = list(chunked(books_content, book_cards_per_page))
+    pages_total = len(book_cards_by_page)
+
+    for page_num, books_content in enumerate(book_cards_by_page, start=1):
         rendered_page = template.render(
-            chunked_books=chunked_books,
-            current_page_num=num,
+            book_cards=books_content,
+            current_page_num=page_num,
             pages_total=pages_total,
             )
-        with open(f'pages/index{num}.html', 'w', encoding='utf8') as file:
+        with open(f'pages/index{page_num}.html', 'w', encoding='utf8') as file:
             file.write(rendered_page)
 
 

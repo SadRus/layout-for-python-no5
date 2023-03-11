@@ -1,7 +1,7 @@
 comments/
 test.py
 books.json
-
+.vscode/
 style.css
 # Byte-compiled / optimized / DLL files
 __pycache__/
