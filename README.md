@@ -3,7 +3,7 @@
 Сайт опубликован по адресу:
 https://sadrus.github.io/layout-for-python-no5/pages/index1.html
 
-Данные книги взяты с сайта https://tululu.org/l55/ с первых трех страниц.
+Данные книги взяты с сайта https://tululu.org/l55/ с первых пяти страниц.
 
 Если вы хотите использовать другие книги можете воспользоваться скриптом из репозитория:
 https://github.com/SadRus/layout-for-python-no4
