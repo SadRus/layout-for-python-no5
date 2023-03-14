@@ -53,8 +53,8 @@ def on_reload():
     )
     template = env.get_template('template.html')
 
-    STATIC_PREFIX = args.static_prefix
-    MEDIA_PREFIX = args.media_prefix
+    static_prefix = args.static_prefix
+    media_prefix = args.media_prefix
     book_cards_per_page = args.count_cards
     full_path = os.path.join(args.dest_folder, 'book_descriptions.json')
 
@@ -70,8 +70,8 @@ def on_reload():
             book_cards=book_descriptions,
             current_page_num=page_num,
             pages_total=pages_total,
-            STATIC_PREFIX=STATIC_PREFIX,
-            MEDIA_PREFIX=MEDIA_PREFIX,
+            STATIC_PREFIX=static_prefix,
+            MEDIA_PREFIX=media_prefix,
             )
         with open(f'pages/index{page_num}.html', 'w', encoding='utf8') as file:
             file.write(rendered_page)
